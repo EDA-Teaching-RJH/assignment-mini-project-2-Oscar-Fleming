@@ -38,4 +38,4 @@ def main():
     return
 # makes sure the code doesnt run if it is called to a seperate file
 if __name__ == "__main__":
-    functionLibrary.donation()
+    functionLibrary.borrow()

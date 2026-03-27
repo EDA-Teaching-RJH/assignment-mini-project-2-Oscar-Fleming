@@ -51,19 +51,40 @@ class Content:
         self.artist = artist
         self.name = name
 def info_collector():
-    cd_name = input("please name the cd").lower()
-    artist = input("please name the artist of the cd").lower()
+    cd_name = input("please name the cd ").lower()
+    artist = input("please name the artist of the cd ").lower()
     return cd_name, artist
 def borrow():
-    cd_name = input("what is the name of the cd you are looking to borrow")
+    cd_name = input("what is the name of the cd you are looking to borrow ")
     with open ("CDs.txt", "r")as file:
         cds = file.readlines()
-        cds = [x.rstrip("\n") for x in cds]
-        
+        file.close
+    cds = [x.rstrip("\n") for x in cds]
+    with open ("borrowed?.txt", "r") as file:
+        borrow_status = file.readlines()
+        borrow_status = [x.rstrip("\n") for x in borrow_status]
+        for i in range(len(cds)):
+            if cds[i] == cd_name:
+                if borrow_status[i] == "borrowed":
+                    print("CD is currently borrowed")
+                else:
+                    borrow_status[i] = "borrowed"
+                    print("CD found and in stock!")
+                    print("you have borrowed", cd_name)
+        for i in range(len(cds)-1):
+            borrow_status[i] = (borrow_status[i] + "\n")
+        with open ("borrowed?.txt", "w")as file:
+            file.close
+        for i in range(len(cds)):
+            with open("borrowed?.txt", "a") as file:
+                file.write(borrow_status[i])
+            
+
+
 
 
 def donation():
-    cd_artist, name = info_collector()
+    name, cd_artist = info_collector()
     with open("CDs.txt", "a") as file:
         file.write("\n" + str(name))
     with open("authors.txt", "a") as file:
