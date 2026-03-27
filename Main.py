@@ -25,7 +25,7 @@ def main():
         if choice == 1:
             functionLibrary.borrow()
         elif choice == 2:
-            functionLibrary.returner()
+            functionLibrary.returns()
         elif choice == 3:
             functionLibrary.recommendation()
         elif choice == 4:
@@ -38,4 +38,4 @@ def main():
     return
 # makes sure the code doesnt run if it is called to a seperate file
 if __name__ == "__main__":
-    functionLibrary.borrow()
+    main()

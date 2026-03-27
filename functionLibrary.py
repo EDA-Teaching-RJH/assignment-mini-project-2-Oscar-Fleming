@@ -1,3 +1,4 @@
+import random
 def usernameChecker():
     logged_in = False
     print("Welcome to the music store!")
@@ -71,6 +72,28 @@ def borrow():
                     borrow_status[i] = "borrowed"
                     print("CD found and in stock!")
                     print("you have borrowed", cd_name)
+        for i in range(len(cds)-1):# lines 74-80 delete the currently saved list of what is 
+            borrow_status[i] = (borrow_status[i] + "\n")#borrowed or not and replaces it with the updated list stored in the program
+        with open ("borrowed?.txt", "w")as file:
+            file.close
+        for i in range(len(cds)):
+            with open("borrowed?.txt", "a") as file:
+                file.write(borrow_status[i])
+def returns():
+    cd = input("which CD would you like to return")
+    with open ("CDs.txt", "r")as file:
+        cds = file.readlines()
+    cds = [x.rstrip("\n") for x in cds]
+    with open ("borrowed?.txt", "r") as file:
+        borrow_status = file.readlines()
+        borrow_status = [x.rstrip("\n") for x in borrow_status]
+        for i in range(len(cds)):
+            if cds[i] == cd:
+                if borrow_status[i] == "borrowed":
+                    print("book will now be returned")
+                    borrow_status[i] = ""
+                else:
+                    print("cd is not lent out currently")
         for i in range(len(cds)-1):
             borrow_status[i] = (borrow_status[i] + "\n")
         with open ("borrowed?.txt", "w")as file:
@@ -78,7 +101,7 @@ def borrow():
         for i in range(len(cds)):
             with open("borrowed?.txt", "a") as file:
                 file.write(borrow_status[i])
-            
+def recommendation():
 
 
 
