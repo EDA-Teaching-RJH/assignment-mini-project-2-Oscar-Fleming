@@ -102,6 +102,10 @@ def returns():
             with open("borrowed?.txt", "a") as file:
                 file.write(borrow_status[i])
 def recommendation():
+    with open("CDs.txt", "r")as file:
+        list = file.readlines()
+        random_num = random.randint(0, len(list)-1)
+        print(list[random_num])
 
 
 
