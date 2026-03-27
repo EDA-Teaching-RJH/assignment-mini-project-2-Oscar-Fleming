@@ -50,15 +50,15 @@ class Content:
             raise ValueError ("please add a name next time")
         if not artist:
             raise ValueError ("please add an artist next time")
-        self.artist = artist
+        self.artist = artist#creates an object within the class
         self.name = name
 def info_collector():
     cd_name = input("please name the cd ").lower()
-    artist = input("please name the artist of the cd ").lower()
+    artist = input("please name the artist of the cd ").lower()#lower to standardize
     return cd_name, artist
 
 def borrow():
-    cd_name = input("what is the name of the cd you are looking to borrow ")
+    cd_name = input("what is the name of the cd you are looking to borrow ").lower()
     with open ("CDs.txt", "r")as file:
         cds = file.readlines()
         file.close
@@ -82,7 +82,7 @@ def borrow():
             with open("borrowed?.txt", "a") as file:
                 file.write(borrow_status[i])
 
-def returns():
+def returns():#pretty much a repeat funtion as borrowing but with opposite functionality
     cd = input("which CD would you like to return")
     with open ("CDs.txt", "r")as file:
         cds = file.readlines()
@@ -105,13 +105,13 @@ def returns():
             with open("borrowed?.txt", "a") as file:
                 file.write(borrow_status[i])
 
-def recommendation():
+def recommendation():#uses a random number generator to pick any of the currently listed CDs
     with open("CDs.txt", "r")as file:
         list = file.readlines()
         random_num = random.randint(0, len(list)-1)
         print(list[random_num])
 
-def donation():
+def donation():#adds new info to the lists
     name, cd_artist = info_collector()
     with open("CDs.txt", "a") as file:
         file.write("\n" + str(name))
@@ -120,10 +120,10 @@ def donation():
     with open ("borrowed?.txt", "a") as file:
         file.write("\n")
 
-def search():
+def search():#regex search to find via a search term
     author_list= []
     cd_list = []
-    while True:
+    while True:#while loop to stop code from crashing when someone chooses something other than 1 or 2
         choice = int(input("search by 1 - author or 2 - name?"))
         search_term = input("please give the largest constant string of characters in the CD or authors name you can remember")
 
