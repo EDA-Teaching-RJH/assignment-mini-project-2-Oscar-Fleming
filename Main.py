@@ -6,15 +6,7 @@ class Product:
         self.type = type
 
 def main():
-    logged_in = False
-    print("Welcome to Blockbuster!")
-    while logged_in == False:
-        login_option = int(input("""""would you like to:
-1 - Login
-2 - create account?"""))
-        if login_option == 1:
-            username = input("what is your user name")
-            functionLibrary.
+    
 
     #loops until the exit choice is made
     while True:
@@ -31,4 +23,4 @@ def main():
     return
 # makes sure the code doesnt run if it is called to a seperate file
 if __name__ == "__main__":
-    main()
+    functionLibrary.usernameChecker()
