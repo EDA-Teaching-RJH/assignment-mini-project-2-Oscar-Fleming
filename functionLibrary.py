@@ -1,6 +1,6 @@
 def usernameChecker():
     logged_in = False
-    print("Welcome to Blockbuster!")
+    print("Welcome to the music store!")
     while logged_in == False:
         login_option = int(input("""would you like to:
 1 - Login?
@@ -18,7 +18,7 @@ def usernameChecker():
                     logged_in = True
             if logged_in == True:
                 print(username, " - successfully logged in")
-                return logged_in
+                return username , logged_in
             else: 
                 print("invalid username")
         if login_option == 2: 
@@ -43,11 +43,31 @@ def usernameChecker():
                 print("new username successfully added to database ")
 
 class Content:
-    def __init__(self, media_type, author, name):
-        if not author:
-            raise ValueError ("please add an author next time")
-        if media_type not in ["book", "dvd", "cd"]:
-            raise ValueError ("please include an accepted media type(DVD, CD, Book)")
-        self.media_type = media_type
-        self.author = author
+    def __init__(self, artist, name):
+        if not name:
+            raise ValueError ("please add a name next time")
+        if not artist:
+            raise ValueError ("please add an artist next time")
+        self.artist = artist
         self.name = name
+def info_collector():
+    cd_name = input("please name the cd").lower()
+    artist = input("please name the artist of the cd").lower()
+    return cd_name, artist
+def borrow():
+    cd_name = input("what is the name of the cd you are looking to borrow")
+    with open ("CDs.txt", "r")as file:
+        cds = file.readlines()
+        cds = [x.rstrip("\n") for x in cds]
+        
+
+
+def donation():
+    cd_artist, name = info_collector()
+    with open("CDs.txt", "a") as file:
+        file.write("\n" + str(name))
+    with open("authors.txt", "a") as file:
+        file.write("\n" + str(cd_artist))
+    with open ("borrowed?.txt", "a") as file:
+        file.write("\n")
+    
