@@ -1,5 +1,5 @@
 import functionLibrary
-# Block Buster
+# cd shop
 class Product:
     def __init__(self, name , type):
         self.name = name
@@ -33,8 +33,8 @@ def main():
         elif choice == 5:
             functionLibrary.search()
         elif choice == 6:
-            print("Thank you for visiting Blockbuster")
-            logged_in = False
+            print("Thank you for visiting the CD shop")
+            logged_in = False#ends loop
     return
 # makes sure the code doesnt run if it is called to a seperate file
 if __name__ == "__main__":

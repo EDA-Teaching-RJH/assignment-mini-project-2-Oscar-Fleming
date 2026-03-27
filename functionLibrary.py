@@ -1,4 +1,5 @@
 import random
+import re
 def usernameChecker():
     logged_in = False
     print("Welcome to the music store!")
@@ -55,6 +56,7 @@ def info_collector():
     cd_name = input("please name the cd ").lower()
     artist = input("please name the artist of the cd ").lower()
     return cd_name, artist
+
 def borrow():
     cd_name = input("what is the name of the cd you are looking to borrow ")
     with open ("CDs.txt", "r")as file:
@@ -79,6 +81,7 @@ def borrow():
         for i in range(len(cds)):
             with open("borrowed?.txt", "a") as file:
                 file.write(borrow_status[i])
+
 def returns():
     cd = input("which CD would you like to return")
     with open ("CDs.txt", "r")as file:
@@ -101,14 +104,12 @@ def returns():
         for i in range(len(cds)):
             with open("borrowed?.txt", "a") as file:
                 file.write(borrow_status[i])
+
 def recommendation():
     with open("CDs.txt", "r")as file:
         list = file.readlines()
         random_num = random.randint(0, len(list)-1)
         print(list[random_num])
-
-
-
 
 def donation():
     name, cd_artist = info_collector()
@@ -118,4 +119,33 @@ def donation():
         file.write("\n" + str(cd_artist))
     with open ("borrowed?.txt", "a") as file:
         file.write("\n")
-    
+
+def search():
+    author_list= []
+    cd_list = []
+    while True:
+        choice = int(input("search by 1 - author or 2 - name?"))
+        search_term = input("please give the largest constant string of characters in the CD or authors name you can remember")
+
+        if choice == 1:
+            with open("authors.txt", "r") as file:
+                author_list = file.readlines()
+                with open("CDs.txt", "r") as file:
+                    cd_list = file.readlines()
+                author_search = r".*" + str(search_term) + r".*"
+                print("CDs from artists with " + str(search_term) + " in our CD shop include:")
+                for i in range(len(author_list)):
+                    if re.search(author_search , author_list[i]):
+                        print(cd_list[i])
+                break
+        elif choice == 2:
+            with open("CDs.txt", "r") as file:
+                cd_list = file.readlines()
+                cd_search = r".*" + str(search_term) + r".*"
+                print("CDs with " + str(search_term) + " in our CD shop include:")
+                for i in range(len(author_list)):
+                    if re.search(cd_search , cd_list[i]):
+                        print(cd_list[i])
+                break
+        else:
+            print("please pick an option 1 or 2")
